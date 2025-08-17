@@ -1,0 +1,64 @@
+<div class="transfer-container">
+    <h1 class="title">Tạo Sổ Tiết Kiệm</h1>
+
+    <div class="account-section">
+        <!-- BÊN TÌM TÀI KHOẢN -->
+        <div class="account-box">
+
+            <div class="input-group">
+
+                <input type="text" [(ngModel)]="accountNumberInput" placeholder="Nhập số tài khoản"
+                    class="account-input" />
+                <button class="search-btn" (click)="searchAccount()">Tìm</button>
+            </div>
+
+            <div class="account-info" *ngIf="sourceAccountInfo">
+                <p><strong>Tên khách hàng:</strong> {{ sourceAccountInfo.fullName }}</p>
+                <p><strong>Email:</strong> {{ sourceAccountInfo.email }}</p>
+                <p><strong>Số dư:</strong> {{ sourceAccountInfo.balance | number: '1.0-0' }} VND</p>
+            </div>
+
+            <div class="error-message" *ngIf="errorMessage">
+                {{ errorMessage }}
+            </div>
+        </div>
+
+        <!-- BÊN FORM TẠO SỔ TIẾT KIỆM -->
+        <div class="account-box" *ngIf="sourceAccountInfo">
+            <h3>📄 Nhập Thông Tin Sổ Tiết Kiệm</h3>
+
+            <div class="input-group">
+                <label>Số tiền gửi:</label>
+                <input type="number" [(ngModel)]="saving.amount" class="account-input" />
+            </div>
+
+            <div class="input-group">
+                <label>Lãi suất (%):</label>
+                <input type="number" [(ngModel)]="saving.interestRate" class="account-input" />
+            </div>
+
+            <div class="input-group">
+                <label>Kỳ hạn (tháng):</label>
+                <input type="number" [(ngModel)]="saving.termMonths" class="account-input" />
+            </div>
+
+            <div class="input-group">
+                <label>Hình thức nhận lãi:</label>
+                <select [(ngModel)]="saving.receiveInterestMethod" class="account-input">
+                    <option value="ToAccount">Nhận vào tài khoản</option>
+                    <option value="AtMaturity">Nhận khi đáo hạn</option>
+                </select>
+            </div>
+
+            <button class="confirm-btn" (click)="createSaving()">Tạo sổ tiết kiệm</button>
+
+            <div class="success-message" *ngIf="message">
+                {{ message }}
+            </div>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <button class="back-btn" (click)="goBack()">Quay lại</button>
+    </div>
+</div>

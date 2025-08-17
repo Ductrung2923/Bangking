@@ -1,0 +1,57 @@
+<div class="transfer-container">
+    <h1 class="title">Matured Transaction</h1>
+
+    <div class="account-section">
+
+        <table class="account-table">
+            <thead>
+                <tr>
+                    <th>IMG</th>
+                    <th>Customer Name</th>
+                    <th>Account Number</th>
+                    <th>Amount</th>
+                    <th>Interest Rate</th>
+
+                    <th>Interest Earned</th>
+                    <th>Total Money</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                    <th>Withdrawn</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let s of maturedSavings; let i = index">
+
+                    <td>
+                        <img [src]="s.photoUrl || 'assets/default-avatar.png'" width="40" height="40" />
+                    </td>
+                    <td>{{ s.customerName }}</td>
+                    <td>{{ s.accountNumber }}</td>
+                    <td>{{ s.amount | number:'1.0-0' }} VND</td>
+                    <td>{{ s.interestRate }}%</td>
+                    <td>{{ s.totalInterestEarned | number:'1.0-0' }} VND</td>
+                    <td>{{ (s.amount + s.totalInterestEarned) | number:'1.0-0' }} VND</td> <!-- ✅ Total Money -->
+                    <td>{{ s.startDate | date:'shortDate' }}</td>
+                    <td>{{ s.endDate | date:'shortDate' }}</td>
+                    <td>{{ s.status }}</td>
+                    <td>
+                        <input type="checkbox" [checked]="s.withdrawn" [disabled]="s.withdrawn"
+                            (change)="handleCheckboxChange(s.savingID, $event)" />
+
+
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+        <div *ngIf="message" class="error-message">
+            {{ message }}
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <button class="back-btn" (click)="goBack()">Quay lại</button>
+    </div>
+</div>

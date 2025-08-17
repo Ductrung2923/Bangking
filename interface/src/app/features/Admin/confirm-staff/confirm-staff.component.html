@@ -1,0 +1,62 @@
+<div class="staff-container">
+    <h2 class="section-title text-center">Confirm Staff</h2>
+
+    <div class="table-responsive">
+        <table class="table custom-table">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Img</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>DateOfBirth</th>
+                    <th>Position</th>
+                    <th>Department</th>
+                    <th>HireDate</th>
+                    <th>Notes</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="let staff of staffList | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index">
+                    <td>{{ staff.employeeCode }}</td>
+                    <td>
+                        <img [src]="staff.photoUrl || 'https://i.pravatar.cc/150?u=' + staff.staffId" class="avatar"
+                            alt="avatar">
+                    </td>
+                    <td>{{ staff.fullName }}</td>
+                    <td>{{ staff.email }}</td>
+                    <td>{{ staff.gender ? 'Nam' : 'Nữ' }}</td>
+                    <td>{{ staff.dateOfBirth | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{ staff.position }}</td>
+                    <td>{{ staff.department }}</td>
+                    <td>{{ staff.hireDate | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{ staff.notes || '-' }}</td>
+                    <td>
+                        <span class="badge" [ngClass]="staff.isActive ? 'bg-green' : 'bg-gray'">
+                            {{ staff.isActive ? 'Đã duyệt' : 'Chưa duyệt' }}
+                        </span>
+                    </td>
+                    <td>
+                        <button *ngIf="!staff.isActive" class="btn btn-approve"
+                            (click)="toggleApproval(staff.userId!, staff.isActive)">
+                            Duyệt
+                        </button>
+                        <button *ngIf="staff.isActive" class="btn btn-reject"
+                            (click)="toggleApproval(staff.userId!, staff.isActive)">
+                            Hủy duyệt
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <pagination-controls (pageChange)="p = $event" [maxSize]="3" previousLabel="‹" nextLabel="›"
+            [directionLinks]="true" [autoHide]="true" class="pagination"></pagination-controls>
+
+        <button class="btntt" onclick="history.back()">Back</button>
+    </div>
+</div>

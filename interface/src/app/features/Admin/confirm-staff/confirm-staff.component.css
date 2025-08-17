@@ -1,0 +1,130 @@
+body {
+    background-color: black;
+
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.staff-container {
+    max-width: 1480px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+    text-align: center;
+}
+
+.custom-table thead th {
+    background-color: #0077cc;
+    color: white;
+    padding: 12px;
+    border-radius: 8px 8px 0 0;
+}
+
+.custom-table td {
+    background-color: #f7f7f7;
+    padding: 12px;
+    vertical-align: middle;
+    border-top: 4px solid transparent;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+}
+
+.custom-table tr:hover td {
+    background-color: #e3f0fc;
+}
+
+.avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid #0077cc;
+    object-fit: cover;
+}
+
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.bg-green {
+    background-color: #28a745;
+    color: white;
+}
+
+.bg-gray {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn {
+    border: none;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-approve {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-approve:hover {
+    background-color: #e68a00;
+}
+
+.btn-reject {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-reject:hover {
+    background-color: #bd2130;
+}
+
+:host {
+    background-color: #eaf6fc;
+    display: block;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.section-title {
+    font-size: 2rem;
+    /* To hơn */
+    font-weight: 700;
+    /* Đậm */
+    color: #003087;
+    /* Xanh đậm */
+    margin-bottom: 30px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.5px;
+}
+
+.btntt {
+    padding: 0.8rem 2rem;
+    font-weight: 500;
+    font-size: 1rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    color: white;
+    transition: background 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin-left: 125%;
+}

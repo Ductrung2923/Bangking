@@ -1,0 +1,80 @@
+<div class="staff-container">
+    <h2 class="section-title text-center">List Customer</h2>
+
+    <div class="table-responsive">
+        <table class="table custom-table">
+            <thead>
+                <tr>
+                    <th>IMG</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>IdentityNumber</th>
+                    <th>DateOfBirth</th>
+                    <th>Card Number</th>
+                    <th>AccountNumber</th>
+                    <th>Balance</th>
+                    <th>CreatedAt</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let c of customers">
+                    <td>
+                        <img *ngIf="c.photoUrl" [src]="c.photoUrl" alt="img" width="40" height="40"
+                            style="object-fit:cover; border-radius: 50%;" />
+                    </td>
+                    <td>{{ c.fullName }}</td>
+                    <td>{{ c.email }}</td>
+                    <td>{{ c.phone }}</td>
+                    <td>{{ c.address }}</td>
+                    <td>{{ c.identityNumber }}</td>
+                    <td>{{ c.dateOfBirth | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{ c.cardNumber }}</td>
+                    <td>{{ c.accountNumber }}</td>
+                    <td>{{ c.balance | number: '1.0-0' }}</td>
+                    <td>{{ c.createdAt | date: 'short' }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="button-group">
+            <button class="btntt" (click)="openAddCustomer()">Add Customer</button>
+            <button class="btntt" (click)="goBack()">Back</button>
+        </div>
+
+    </div>
+
+    <div class="popup-overlay" *ngIf="showAddForm">
+        <div class="popup-form">
+            <h2 class="popup-title">➕ Add New Customer</h2>
+            <form (ngSubmit)="submitCustomer()" #customerForm="ngForm" class="form-grid">
+                <input type="text" placeholder="Photo URL" [(ngModel)]="newCustomer.photoUrl" name="photoUrl">
+                <input type="text" placeholder="Full Name" [(ngModel)]="newCustomer.fullName" name="fullName" required>
+                <input type="email" placeholder="Email" [(ngModel)]="newCustomer.email" name="email" required>
+                <input type="text" placeholder="Phone" [(ngModel)]="newCustomer.phone" name="phone" required>
+                <input type="text" placeholder="Address" [(ngModel)]="newCustomer.address" name="address" required>
+                <input type="text" placeholder="Identity Number" [(ngModel)]="newCustomer.identityNumber"
+                    name="identityNumber" required>
+                <input type="date" [(ngModel)]="newCustomer.dateOfBirth" name="dateOfBirth" required>
+                <select [(ngModel)]="newCustomer.gender" name="gender" required>
+                    <option [ngValue]="true">Nam</option>
+                    <option [ngValue]="false">Nữ</option>
+                </select>
+                <input type="text" placeholder="Card Number" [(ngModel)]="newCustomer.cardNumber" name="cardNumber"
+                    required>
+                <input type="number" placeholder="Balance" [(ngModel)]="newCustomer.balance" name="balance" required>
+                <input type="text" placeholder="Account Number" [(ngModel)]="newCustomer.accountNumber"
+                    name="accountNumber">
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-approve">✅ Submit</button>
+                    <button type="button" class="btn btn-reject" (click)="closeAddCustomer()">❌ Cancel</button>
+                </div>
+                <div *ngIf="message"
+                    [ngClass]="{'alert-success': messageType === 'success', 'alert-error': messageType === 'error'}"
+                    class="alert">
+                    {{ message }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

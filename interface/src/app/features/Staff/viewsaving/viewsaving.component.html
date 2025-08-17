@@ -1,0 +1,50 @@
+<div class="transfer-container">
+    <h1 class="title">Views Savings</h1>
+
+    <div class="account-section">
+
+        <table class="account-table">
+            <thead>
+                <tr>
+                    <th>IMG</th>
+                    <th>customerName</th>
+                    <th>AccountNumber</th>
+                    <th>amount</th>
+                    <th>interestRate</th>
+                    <th>receiveInterestMethod</th>
+                    <th>totalInterestEarned</th>
+                    <th>startDate</th>
+                    <th>endDate</th>
+                    <th>status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let s of savings">
+                    <td>
+                        <img [src]="s.photoUrl || 'assets/default-avatar.png'" width="40" height="40" />
+                    </td>
+                    <td>{{ s.customerName }}</td>
+                    <td>{{ s.accountNumber }}</td>
+                    <td>{{ s.amount | number:'1.0-0' }} VND</td>
+                    <td>{{ s.interestRate }}%</td>
+                    <td>{{ s.receiveInterestMethod }}</td>
+                    <td>{{ s.totalInterestEarned | number:'1.0-0' }} VND</td>
+                    <td>{{ s.startDate | date:'shortDate' }}</td>
+                    <td>{{ s.endDate | date:'shortDate' }}</td>
+                    <td>{{ s.status }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+        <div *ngIf="message" class="error-message">
+            {{ message }}
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <button class="back-btn" (click)="goBack()">Quay lại</button>
+        <button class="confirm-btn" (click)="onCalculateAllInterest()">Cập nhập Lãi</button>
+    </div>
+</div>

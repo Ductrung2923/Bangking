@@ -1,0 +1,48 @@
+<div class="staff-container">
+    <h2 class="section-title text-center">List Customer</h2>
+
+    <div class="table-responsive">
+        <table class="table custom-table">
+            <thead>
+                <tr>
+                    <th>IMG</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>IdentityNumber</th>
+                    <th>DateOfBirth</th>
+                    <th>Card Number</th>
+                    <th>AccountNumber</th>
+                    <th>Balance</th>
+                    <th>CreatedAt</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="let c of customers | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index">
+                    <td>
+                        <img *ngIf="c.photoUrl" [src]="c.photoUrl" alt="img" width="40" height="40"
+                            style="object-fit:cover; border-radius: 50%;" />
+                    </td>
+                    <td>{{ c.fullName }}</td>
+                    <td>{{ c.email }}</td>
+                    <td>{{ c.phone }}</td>
+                    <td>{{ c.address }}</td>
+                    <td>{{ c.identityNumber }}</td>
+                    <td>{{ c.dateOfBirth | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{ c.cardNumber }}</td>
+                    <td>{{ c.accountNumber }}</td>
+                    <td>{{ c.balance | number: '1.0-0' }}</td>
+                    <td>{{ c.createdAt | date: 'short' }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <pagination-controls (pageChange)="p = $event" [maxSize]="3" previousLabel="‹" nextLabel="›"
+            [directionLinks]="true" [autoHide]="true" class="pagination"></pagination-controls>
+
+
+        <button class="btntt" (click)="goBack()">Back</button>
+    </div>
+</div>

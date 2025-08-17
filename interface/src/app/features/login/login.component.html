@@ -1,0 +1,181 @@
+<div id="container" class="container">
+    <!-- FORM SECTION -->
+    <div class="row">
+        <!-- SIGN UP -->
+        <div class="col align-items-center flex-col sign-up" *ngIf="!isLoginMode">
+            <div class="form-wrapper align-items-center" style="padding: 1.5rem 0;">
+                <div style="margin-right: 140%; padding: 3rem 6;" class="form sign-up">
+                    <div class="input-group" style="margin-bottom: 0.75rem;">
+                        <i class='bx bxs-user'></i>
+                        <input type="text" [(ngModel)]="registerData.username" placeholder="Username"
+                            style="padding: 0.5rem; font-size: 1rem;">
+                    </div>
+                    <div class="input-group" style="margin-bottom: 0.75rem;">
+                        <i class='bx bxs-lock-alt'></i>
+                        <input type="password" [(ngModel)]="registerData.password" placeholder="Password"
+                            style="padding: 0.5rem; font-size: 1rem;">
+                    </div>
+                    <div class="input-group" style="margin-bottom: 0.75rem;">
+                        <i class='bx bx-mail-send'></i>
+                        <input type="email" [(ngModel)]="registerData.email" placeholder="Email"
+                            style="padding: 0.5rem; font-size: 1rem;">
+                    </div>
+                    <div class="input-group" style="margin-bottom: 0.75rem;">
+                        <i class='bx bxs-user-detail'></i>
+                        <input type="text" [(ngModel)]="registerData.fullName" placeholder="Full Name"
+                            style="padding: 0.5rem; font-size: 1rem;">
+                    </div>
+                    <div class="input-row"
+                        style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.75rem;">
+                        <div class="input-group" style="flex: 1;">
+                            <i class='bx bxs-briefcase'></i>
+                            <input type="text" [(ngModel)]="registerData.position" placeholder="Position"
+                                style="padding: 0.5rem; font-size: 1rem;">
+                        </div>
+                        <div class="input-group" style="flex: 1;">
+                            <i class='bx bxs-building'></i>
+                            <input type="text" [(ngModel)]="registerData.department" placeholder="Department"
+                                style="padding: 0.5rem; font-size: 1rem;">
+                        </div>
+                    </div>
+                    <div class="input-row"
+                        style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.75rem;">
+                        <div class="input-group small" style="width: 50%;">
+                            <i class='bx bxs-envelope'></i>
+                            <input type="text" [(ngModel)]="registerData.employeeCode" placeholder="Employee Code"
+                                style="width: 100%; padding: 0.5rem; font-size: 1rem;">
+                        </div>
+                        <div class="input-group" style="width: 50%;">
+                            <i class='bx bxs-user'></i>
+
+                            <select style="width: 100%; padding: 0.5rem; font-size: 1rem;"
+                                [(ngModel)]="registerData.gender" name="gender">
+                                <option value="true">Nam</option>
+                                <option value="false">Nữ</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="input-row"
+                        style="display: flex; gap: 0.5rem; align-items: start; margin-bottom: 0.75rem;">
+                        <div class="input-group" style="flex: 1; width: 50%;">
+                            <label for="dob">Date of Birth</label>
+                            <i class='bx bxs-calendar'></i>
+                            <input type="date" [(ngModel)]="registerData.dateOfBirth" id="dob"
+                                placeholder="Date of Birth" style="padding: 0.5rem; font-size: 1rem;">
+                        </div>
+                        <div class="input-group" style="width: 50%; flex: 1;">
+                            <label for="hire-date">Hire Date</label>
+                            <i class='bx bxs-calendar'></i>
+                            <input type="date" [(ngModel)]="registerData.hireDate" id="hire-date"
+                                placeholder="Hire Date" style="padding: 0.5rem; font-size: 1rem;">
+                        </div>
+                    </div>
+                    <div class="input-group" style="margin-bottom: 0.75rem;">
+                        <i class='bx bxs-image'></i>
+                        <input type="text" [(ngModel)]="registerData.photoUrl" placeholder="Photo URL"
+                            style="padding: 0.5rem; font-size: 1rem;">
+                    </div>
+                    <div class="input-group" style="margin-bottom: 0.75rem;">
+                        <i class='bx bxs-note'></i>
+                        <input type="text" [(ngModel)]="registerData.notes" placeholder="Notes"
+                            style="padding: 0.5rem; font-size: 1rem;">
+                    </div>
+                    <button type="button" (click)="registerStep1()"
+                        style="padding: 0.5rem 1.5rem; font-size: 1rem;">Sign up</button>
+                    <p *ngIf="registerErrorMessage" class="error-message" style="margin-top: 0.75rem;">
+                        {{registerErrorMessage}}</p>
+                    <p *ngIf="registerSuccessMessage" class="success-message" style="margin-top: 0.5rem; color: green;">
+                        {{ registerSuccessMessage }} </p>
+
+                    <p style="margin-top: 0.75rem;">
+                        <span>Already have an account?</span>
+                        <b (click)="toggle()" class="pointer">Sign in here</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIGN IN -->
+        <div class="col align-items-center flex-col sign-in" *ngIf="isLoginMode">
+            <div class="form-wrapper align-items-center" style="padding: 1.5rem 0;">
+                <div style="margin-right: -150%; padding: 3rem 6;" class="form sign-in">
+                    <div class="input-group" style="margin-bottom: 0.75rem;">
+                        <i class='bx bxs-user'></i>
+                        <input type="text" [(ngModel)]="username" placeholder="Username"
+                            style="padding: 0.5rem; font-size: 1rem;">
+                    </div>
+                    <div class="input-group" style="margin-bottom: 0.75rem;">
+                        <i class='bx bxs-lock-alt'></i>
+                        <input type="password" [(ngModel)]="password" placeholder="Password"
+                            style="padding: 0.5rem; font-size: 1rem;">
+                    </div>
+                    <button type="button" (click)="login()" style="padding: 0.5rem 1.5rem; font-size: 1rem;">Sign
+                        in</button>
+                    <p *ngIf="errorMessage" class="error-message" style="margin-top: 0.75rem;">{{errorMessage}}</p>
+                    <p style="margin-top: 0.75rem;">
+                        <b class="pointer" (click)="openForgotPasswordPopup()">Forgot password ?</b>
+                    </p>
+                    <p style="margin-top: 0.75rem;">
+                        <span>Don't have an account?</span>
+                        <b (click)="toggle()" class="pointer">Sign up here</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT SECTION -->
+    <div class="row content-row">
+        <div class="col align-items-center flex-col" *ngIf="isLoginMode">
+            <div style="margin-right: 60%;" class="text sign-in">
+                <h2>Welcome</h2>
+            </div>
+            <div class="img sign-in">
+                <!-- Optional image can go here -->
+            </div>
+        </div>
+        <div class="col align-items-center flex-col" *ngIf="!isLoginMode">
+            <div class="img sign-up">
+                <!-- Optional image can go here -->
+            </div>
+            <div style="margin-left: 58%;" class="text sign-up">
+                <h2>Join with us</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- OTP POPUP -->
+    <div *ngIf="showOtpPopup" class="otp-popup">
+        <div class="otp-content">
+            <h3>Nhập OTP</h3>
+            <p>OTP đã được gửi đến {{registerData.email}}.</p>
+            <input type="text" [(ngModel)]="otp" placeholder="Nhập OTP" maxlength="6"
+                style="padding: 0.5rem; font-size: 1rem;">
+            <p *ngIf="registerErrorMessage" class="error-message" style="margin-top: 0.75rem;">{{registerErrorMessage}}
+            </p>
+            <button type="button" (click)="verifyOTP()" style="padding: 0.5rem 1.5rem; font-size: 1rem;">Xác nhận
+                OTP</button>
+            <button type="button" (click)="closeOtpPopup()"
+                style="padding: 0.5rem 1.5rem; font-size: 1rem;">Hủy</button>
+        </div>
+    </div>
+
+    <!-- FORGOT PASSWORD POPUP -->
+    <div *ngIf="showForgotPasswordPopup" class="otp-popup">
+        <div class="otp-content">
+            <h3>Quên mật khẩu</h3>
+            <p>Vui lòng nhập tên đăng nhập để nhận lại mật khẩu mới.</p>
+            <input type="text" [(ngModel)]="forgotPasswordUsername" placeholder="Nhập tên đăng nhập"
+                style="padding: 0.5rem; font-size: 1rem;">
+            <p *ngIf="forgotPasswordError" class="error-message" style="color: red;">{{ forgotPasswordError }}</p>
+            <p *ngIf="forgotPasswordSuccess" class="success-message" style="color: green;">{{ forgotPasswordSuccess }}
+            </p>
+            <button type="button" (click)="resetPassword()" style="padding: 0.5rem 1.5rem; font-size: 1rem;">Gửi lại mật
+                khẩu</button>
+            <button type="button" (click)="closeForgotPasswordPopup()"
+                style="padding: 0.5rem 1.5rem; font-size: 1rem;">Đóng</button>
+        </div>
+    </div>
+
+</div>

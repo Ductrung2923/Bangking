@@ -1,0 +1,70 @@
+<div class="profile-container">
+    <div class="profile-card">
+
+        <div class="avatar-section">
+            <img [src]="adminData.photoUrl || 'https://i.pravatar.cc/150?img=3'" alt="Avatar" class="avatar" />
+        </div>
+
+        <div class="info-section">
+            <h2 class="name">{{ adminData.fullName }}</h2>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Full Name:</label>
+                    <input [(ngModel)]="adminData.fullName" />
+
+                </div>
+
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input [(ngModel)]="adminData.email" />
+                </div>
+
+                <div class="form-group">
+                    <label>User Name:</label>
+                    <input readonly [(ngModel)]="adminData.username" />
+                </div>
+
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input [(ngModel)]="adminData.passwordHash" />
+                </div>
+
+                <div class="form-group">
+                    <label>Phone:</label>
+                    <input readonly [(ngModel)]="adminData.phone" />
+                </div>
+
+                <div class="form-group">
+                    <label>Position:</label>
+                    <input [(ngModel)]="adminData.position" />
+                </div>
+
+                <div class="form-group">
+                    <label>PhotoURL:</label>
+                    <input [(ngModel)]="adminData.photoUrl" />
+                </div>
+
+                <div class="form-group">
+                    <label>Gender:</label>
+                    <input readonly [value]="adminData.gender === true ? 'Nam' : 'Nữ'" />
+                </div>
+
+                <div class="form-group">
+                    <label>Notes:</label>
+                    <input [(ngModel)]="adminData.notes" />
+                </div>
+
+                <div class="form-group">
+                    <label>CreatedAt:</label>
+                    <input readonly [value]="adminData.createdAt | date:'yyyy-MM-dd'" />
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn" (click)="onEdit()">Edit</button>
+                <button class="btn" onclick="history.back()">Back</button>
+            </div>
+        </div>
+    </div>
+</div>

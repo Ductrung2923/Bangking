@@ -1,0 +1,70 @@
+<div class="transfer-container">
+    <h1 class="title">External Transaction</h1>
+    <div class="account-section">
+
+        <div class="account-box">
+            <div class="input-group">
+                <input type="text" [(ngModel)]="accountNumberInput" placeholder="Nhập số tài khoản"
+                    class="account-input" />
+                <button class="search-btn" (click)="searchAccount()">Tìm</button>
+            </div>
+
+            <div class="account-info" *ngIf="sourceAccountInfo">
+                <p><strong>Tên khách hàng:</strong> {{ sourceAccountInfo.fullName }}</p>
+                <p><strong>Email:</strong> {{ sourceAccountInfo.email }}</p>
+                <p><strong>Số dư:</strong> {{ sourceAccountInfo.balance | number: '1.0-0' }} VND</p>
+            </div>
+
+            <div class="error-message" *ngIf="errorMessage">
+                {{ errorMessage }}
+            </div>
+
+        </div>
+
+
+        <div class="account-box">
+
+            <select class="custom-select" [(ngModel)]="selectedBankId">
+                <option value="" disabled selected>Chọn ngân hàng thụ hưởng</option>
+                <option *ngFor="let bank of bankList" [value]="bank.externalBankId">
+                    {{ bank.bankName }}
+                </option>
+            </select>
+
+
+
+            <!-- Nhập số tài khoản thụ hưởng -->
+            <div *ngIf="selectedBankId">
+                <input type="text" [(ngModel)]="externalAccountNumber" placeholder="Nhập số tài khoản thụ hưởng"
+                    class="account-input" />
+                <button class="search-btn" (click)="searchExternalAccount()">Tìm</button>
+            </div>
+
+            <div style="margin-top: 4%;" class="account-info" *ngIf="externalAccountInfo">
+                <p><strong>Chủ tài khoản:</strong> {{ externalAccountInfo.accountHolderName }}</p>
+                <p><strong>Số tài khoản:</strong> {{ externalAccountInfo.accountNumber }}</p>
+            </div>
+
+            <div class="error-message" *ngIf="externalErrorMessage">
+                {{ externalErrorMessage }}
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="transfer-section">
+        <input style="margin-bottom: 2%;" type="number" [(ngModel)]="amount" placeholder="Nhập số tiền muốn chuyển"
+            class="amount-input" aria-label="Số tiền chuyển" />
+        <input type="text" [(ngModel)]="description" placeholder="Nội dung chuyển khoản" class="amount-input"
+            aria-label="Nội Dung chuyển Tiền" />
+        <div class="transfer-message" *ngIf="transactionMessage">
+            {{ transactionMessage }}
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <button class="back-btn" (click)="goBack()">Quay lại</button>
+        <button class="confirm-btn" (click)="transferMoney()">Chuyển tiền</button>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="transfer-container">
+    <h1 class="title">Rút Tiền Từ Tài Khoản</h1>
+
+    <div class="account-section">
+        <div class="account-box">
+            <div class="input-group">
+                <input type="text" [(ngModel)]="accountNumberInput" placeholder="Nhập số tài khoản cần rút"
+                    class="account-input" />
+                <button class="search-btn" (click)="searchAccount()">Tìm kiếm</button>
+            </div>
+
+            <div class="account-info" *ngIf="accountInfo">
+                <p><strong>Họ tên:</strong> {{ accountInfo.fullName }}</p>
+                <p><strong>Email:</strong> {{ accountInfo.email }}</p>
+                <p><strong>Số dư hiện tại:</strong> {{ accountInfo.balance | number: '1.0-0' }} VND</p>
+            </div>
+
+            <div class="error-message" *ngIf="errorMessage">
+                {{ errorMessage }}
+            </div>
+        </div>
+
+        <div class="transfer-section">
+            <input type="number" [(ngModel)]="amount" placeholder="Nhập số tiền muốn rút" class="amount-input"
+                aria-label="Số tiền muốn rút" style="margin-bottom: 10px;" />
+            <input type="text" [(ngModel)]="description" placeholder="Ghi chú nội dung rút tiền" class="amount-input"
+                aria-label="Nội dung rút tiền" />
+
+            <div class="transfer-message" *ngIf="withdrawMessage">
+                {{ withdrawMessage }}
+            </div>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <button class="back-btn" (click)="goBack()">Quay lại</button>
+        <button class="confirm-btn" (click)="withdrawMoney()">💸 Xác nhận rút</button>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+import { Routes } from '@angular/router';
+import { LoginComponent } from './features/login/login.component';
+import { HomeAdComponent } from './features/Admin/home-ad/home-ad.component';
+import { HomeStaffComponent } from './features/Staff/home-staff/home-staff.component';
+import { ProfileAdminComponent } from './features/Admin/profile-admin/profile-admin.component';
+import { ProfileStaffComponent } from './features/Staff/profile-staff/profile-staff.component';
+import { ConfirmStaffComponent } from './features/Admin/confirm-staff/confirm-staff.component';
+import { ListcusStaffComponent } from './features/Staff/listcus-staff/listcus-staff.component';
+import { ListcusAdminComponent } from './features/Admin/liscus-ad/liscus-ad.component';
+import { TransactionInternalComponent } from './features/Staff/transaction-internal/transaction-internal.component';
+import { TransactionExternalComponent } from './features/Staff/transaction-external/transaction-external.component';
+import { DepositComponent } from './features/Staff/deposit/deposit.component';
+import { WithdrawComponent } from './features/Staff/withdraw/withdraw.component';
+import { SavingbookComponent } from './features/Staff/savingbook/savingbook.component';
+import { ViewsavingComponent } from './features/Staff/viewsaving/viewsaving.component';
+import { MaturedSavingsComponent } from './features/Staff/matured-savings/matured-savings.component';
+import { SavingViewsComponent } from './features/Admin/saving-views/saving-views.component';
+import { MaturedCusAdminComponent } from './features/Admin/matured-cus-admin/matured-cus-admin.component';
+export const routes: Routes = [
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: 'login', component: LoginComponent },
+    { path: 'home-ad', component: HomeAdComponent },
+    { path: 'home-staff', component: HomeStaffComponent },
+    { path: 'profile-admin', component: ProfileAdminComponent },
+    { path: 'profile-staff', component: ProfileStaffComponent },
+    { path: 'confirm-staff', component: ConfirmStaffComponent },
+    { path: 'listcus-staff', component: ListcusStaffComponent },
+    { path: 'listcus-ad', component: ListcusAdminComponent },
+    { path: 'transaction-internal', component: TransactionInternalComponent },
+    { path: 'transaction-external', component: TransactionExternalComponent },
+    { path: 'deposit', component: DepositComponent },
+    { path: 'withdraw', component: WithdrawComponent },
+    { path: 'savingbook', component: SavingbookComponent },
+    { path: 'viewsaving', component: ViewsavingComponent },
+    { path: 'matured-savings', component: MaturedSavingsComponent },
+    { path: 'saving-views', component: SavingViewsComponent },
+    { path: 'matured-cus-admin', component: MaturedCusAdminComponent }
+];
